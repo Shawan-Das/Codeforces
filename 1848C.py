@@ -1,3 +1,4 @@
+import math
 def checkCase(a,b):
     n=len(a)
     if(a==b):
@@ -7,8 +8,7 @@ def checkCase(a,b):
         print("YES")
         return True
     return False
-
-
+ 
 testcase=int(input())
 for t in range(testcase):
     n = int(input())
@@ -16,22 +16,27 @@ for t in range(testcase):
     a=list(map(int, input().split(" ")))
     b=list(map(int, input().split(" ")))
     
-    if(a==b): print("YES")
-    elif(a.count(0)==n or b.count(0)==n): print("YES")
-    else:
-        flag=False
-        for j in range(max(sum(a),sum(b))) :
-            c=[]
-            for k in range(len(a)):
-                c.append(abs(a[k]-b[k]))
-            if(c in memory):
-                print("NO")
-                memory.clear()
-                flag=True
-                break
-            a=b
-            b=c
-            if(checkCase(a,b)):
-                flag=True
-                break
-        if(flag==False): print("NO")
+    if(checkCase(a,b)==False):
+        data=set()
+        for i in range(len(a)):
+            if(a[i]==b[i] and a[i]==0): continue
+            elif(a[i]==b[i]):
+                data.add(2)
+                continue
+            elif(a[i]==0):
+                data.add(0)
+                continue
+            elif(b[i]==0):
+                data.add(1)
+                continue
+            x= b[i]//math.gcd(a[i],b[i])
+            y= a[i]//math.gcd(a[i],b[i])
+            
+            if(x%2 == y%2): data.add(2)
+            elif(y%2 == 1): data.add(1)
+            else: data.add(0)
+        
+        if(len(data)<=1): print("YES")
+        else: print("NO")
+        
+        
