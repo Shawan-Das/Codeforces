@@ -1,9 +1,3 @@
-data=[]
+d="12234"
 
-for i in range(4):
-    if(i==0):
-        data.append(list(input()))
-        continue
-    data[0].append(input())
-    
-print(data)
+print(int(d[2])-int(d[0]))
