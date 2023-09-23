@@ -1,11 +1,20 @@
+data=[[1,1,1,1,1,1,1,1,1,1],
+      [1,2,2,2,2,2,2,2,2,1],
+      [1,2,3,3,3,3,3,3,2,1],
+      [1,2,3,4,4,4,4,3,2,1],
+      [1,2,3,4,5,5,4,3,2,1],
+      [1,2,3,4,5,5,4,3,2,1],
+      [1,2,3,4,4,4,4,3,2,1],
+      [1,2,3,3,3,3,3,3,2,1],
+      [1,2,2,2,2,2,2,2,2,1],
+      [1,1,1,1,1,1,1,1,1,1]]
+
 for t in range(int(input())):
-    n,k = map(int, input().split(" "))
-    flag= False
+    count=0
+    for j in range(10):
+        point=input()
+        for i in range(len(point)):
+            if(point[i] != '.'): count += data[j][i]
+    print(count)
     
-    for y in range(2):
-        var= n-(k*y)
-        if(var>=0 and var%2==0):
-            flag= True
-            break
-    if(flag): print("Yes")
-    else: print("No")
+
