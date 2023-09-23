@@ -13,6 +13,7 @@ for t in range(int(input())):
     count=0
     for j in range(10):
         point=input()
-        for i in range(len(point)):
-            if(point[i] != '.'): count += data[j][i]
+        if 'X' in point:
+            for i in range(len(point)):
+                if(point[i] != '.'): count += data[j][i]
     print(count)
