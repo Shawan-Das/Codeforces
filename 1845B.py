@@ -15,3 +15,5 @@ for t in range(int(input())):
 
     count=(distance(A,B)+distance(A,C)-distance(B,C))//2
     print(count+1)
+    
+    

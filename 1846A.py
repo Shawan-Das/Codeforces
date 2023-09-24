@@ -7,3 +7,4 @@ for t in range(int(input())):
     count=[d for d in data if d[a]>d[b]]
     
     print(len(count))
+    
