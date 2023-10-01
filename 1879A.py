@@ -8,7 +8,6 @@ for _ in range(int(input())):
 
     f= data[0]
     flag=True
-    #print(data)
     for d in data[1:]:
         if(d[s]>=f[s] and d[e]>=f[e]):
             flag=False
