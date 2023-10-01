@@ -1,18 +1,8 @@
-s,e=0,1
 for _ in range(int(input())):
-    data=[]
-    for i in range(int(input())):
-        t=list(map(int,input().split(" ")))
-        if(i!=0 and t[e]<data[0][e]): continue
-        data.append(t)
+    n,k,x=map(int,input().split(" "))
 
-    f= data[0]
-    flag=True
-    #print(data)
-    for d in data[1:]:
-        if(d[s]>=f[s] and d[e]>=f[e]):
-            flag=False
-            break
-    
-    if(flag): print(f[s])
-    else: print(-1)
+    r=n-k
+    minTotal,maxTotal =(k*(k+1))//2 , ((n*(n+1))//2)-(r*(r+1)//2)
+
+    if(minTotal<=x and x<=maxTotal): print("Yes")
+    else: print("NO")
