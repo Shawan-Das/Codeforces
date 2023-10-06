@@ -1,22 +1,8 @@
-def file_text(data):
-    text=""
-    
-    for d in data:
-        text+= f"ID: {d[0]} Mark: {d[1]}\n"
-    return text
-
 def merge(arr,left,mid,right):
     i,j=left,mid+1
     temp=[]
     while(i<=mid and j<=right):
-        if(arr[i][1]==arr[j][1]):
-            if(arr[i][0]<arr[j][0]):
-                temp.append(arr[i])
-                i+=1
-            else:
-                temp.append(arr[j])
-                j+=1
-        elif(arr[i][1]<arr[j][1]):
+        if(arr[i][0]>arr[j][0]):
             temp.append(arr[j])
             j+=1
         else:
@@ -38,19 +24,27 @@ def merge_sort(arr,left,right):
         merge_sort(arr,mid+1,right)
         merge(arr,left,mid,right)
 
-
-input_text= 'Task3\input3.txt' # file location
-output_text= 'Task3\output3.txt' # output will be saved on this location
+input_text= 'input4.txt' # file location
+output_text= 'output4.txt' # output will be saved on this location
 text =open(input_text, 'r') # 'r' used to read file data
 text= text.read()
 
-n,i,m=text.split('\n')
-n=int(n)
-Id=list(map(int,i.split(" ")))
-marks=list(map(int,m.split(" ")))
-data=[(Id[i],marks[i]) for i in range(n)]
+temp_data= list(text.split('\n'))
+n,temp_data=int(temp_data[0]),temp_data[1:]
+
+data=[]
+
+for td in temp_data:
+    train_name, train_info= td.split(' ')[0] ,td
+    
+    data.append((train_name,train_info))
 
 merge_sort(data,0,n-1)
 
+new_text=""
+
+for d in data:
+    new_text+= d[1]+'\n'
+
 output = open(output_text, 'w')
-output.write(file_text(data))
+output.write(new_text)

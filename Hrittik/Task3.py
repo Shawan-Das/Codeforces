@@ -1,3 +1,10 @@
+def file_text(data):
+    text=""
+    
+    for d in data:
+        text+= f"ID: {d[0]} Mark: {d[1]}\n"
+    return text
+
 def merge(arr,left,mid,right):
     i,j=left,mid+1
     temp=[]
@@ -9,7 +16,6 @@ def merge(arr,left,mid,right):
             else:
                 temp.append(arr[j])
                 j+=1
-        
         elif(arr[i][1]<arr[j][1]):
             temp.append(arr[j])
             j+=1
@@ -22,10 +28,8 @@ def merge(arr,left,mid,right):
     while(i<=mid):
         temp.append(arr[i])
         i+=1
-    print('-1-',arr)
-    print('-2-',temp)
     arr[left:right+1]=temp[:]
-    print('-3-',arr)
+    
 def merge_sort(arr,left,right):
     
     if(left<right):
@@ -35,6 +39,18 @@ def merge_sort(arr,left,right):
         merge(arr,left,mid,right)
 
 
-data=[(7, 40), (4, 50), (9, 50), (3, 20), (2, 10), (5, 10), (1, 10)]
-merge_sort(data,0,len(data)-1)
-print(data)
+input_text= 'input3.txt' # file location
+output_text= 'output3.txt' # output will be saved on this location
+text =open(input_text, 'r') # 'r' used to read file data
+text= text.read()
+
+n,i,m=text.split('\n')
+n=int(n)
+Id=list(map(int,i.split(" ")))
+marks=list(map(int,m.split(" ")))
+data=[(Id[i],marks[i]) for i in range(n)]
+
+merge_sort(data,0,n-1)
+
+output = open(output_text, 'w')
+output.write(file_text(data))

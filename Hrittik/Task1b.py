@@ -13,8 +13,8 @@ def calculate(n1,op,n2):
     
     return f"The result of {n1} {op} {n2} is {value} \n"
 
-input_text= 'Task1\input1b.txt' # file location
-output_text= 'Task1\output1b.txt' # output will be saved on this location
+input_text= 'input1b.txt' # file location
+output_text= 'output1b.txt' # output will be saved on this location
 text =open(input_text, 'r') # 'r' used to read file data
 text= text.read()
 new_text= ""
