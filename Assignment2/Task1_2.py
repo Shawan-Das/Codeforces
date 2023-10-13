@@ -9,16 +9,17 @@ data= list(map(int,text.readline().split(" "))) # store the number in list and i
 text.close()
 
 left,right= 0, n-1
-a,b=None,None
+flag=True
 
 while(left<right):
     if data[left]+data[right]== total:
         a,b=left+1,right+1
+        flag=False
         break
     elif(data[left]+data[right]<total): left += 1
     else: right -=1
 
-if a is not None and b is not None: output.write(str(a)+ " "+str(b))
+if flag==False: output.write(str(a)+ " "+str(b))
 else: output.write("IMPOSSIBLE")
 
 output.close()

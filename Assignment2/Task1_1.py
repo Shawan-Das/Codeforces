@@ -8,15 +8,16 @@ data= list(map(int,text.readline().split(" "))) # store the number in list and i
 
 text.close()
 
-a,b=None, None ## initially assign null into a and b
+flag=True ## initially assign null into a and b
 
 for i in range(n):
     for j in range(i+1,n):
         if(data[i]+data[j]==total):
             a,b = i+1, j+1
+            flag=False
             break;
-    if a is not None and b: break;
+    if flag==False: break;
 
-if a is not None and b is not None: output.write(str(a)+ " "+str(b))
+if flag==False: output.write(str(a)+ " "+str(b))
 else: output.write("IMPOSSIBLE")
 output.close()
