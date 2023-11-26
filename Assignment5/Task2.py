@@ -22,7 +22,25 @@ def is_cyclic(graph):
             if is_cyclic_util(node, visited, rec_stack, graph):
                 return True
     return False
+def dfs(graph, node, visited, stack):
+    visited[node] = True
+    for neighbor in graph[node]:
+        if not visited[neighbor]:
+            dfs(graph, neighbor, visited, stack)
+    stack.append(node)
 
+def topological_sort_dfs(n, graph):
+
+    visited = [False] * (n + 1)
+    stack = []
+
+    for i in range(1, n + 1):
+        if not visited[i]:
+            dfs(graph, i, visited, stack)
+
+    #stack.reverse()  # Reverse the order of elements in the stack
+
+    return stack
 def topological_sort_bfs(n, graph):
 
     queue = deque()
@@ -32,7 +50,7 @@ def topological_sort_bfs(n, graph):
 
     result = []
     while queue:
-        node = queue.popleft()
+        node = queue.pop()
         result.append(node)
         for neighbor in graph[node]:
             in_degree[neighbor] -= 1
@@ -42,7 +60,7 @@ def topological_sort_bfs(n, graph):
     return result
 
 
-input_text= 'input1B_3.txt' # file location
+input_text= 'input2_1.txt' # file location
 output_text= 'out'+input_text[2:] # output will be saved on this location
 output = open(output_text, 'w')
 text =open(input_text, 'r')
@@ -60,14 +78,20 @@ for i in range(int(m)):
     graph[int(u)].append(int(v))
     in_degree[int(v)] += 1
 text.close()
-#print(graph)
+print(graph)
 if is_cyclic(graph):
     output.write("IMPOSSIBLE")
 else:
+    result_dfs = topological_sort_dfs(n, graph)
     result_bfs = topological_sort_bfs(n, graph)
+    result=result_dfs
+    for value in range(len(result_dfs)):
+        if result_dfs[value] > result_bfs[value]:
+            result= result_bfs
+            break
+    
     string= ""
-    for r in result_bfs:
+    for r in result:
         string += str(r) + " "
     output.write(string)
 output.close()
-
